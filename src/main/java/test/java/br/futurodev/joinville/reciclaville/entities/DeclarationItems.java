@@ -14,17 +14,18 @@ public class DeclarationItems {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //A ver
+    @ManyToOne
+    @JoinColumn(name = "declaration_id", nullable = false)
     private Declaration declaration;
 
-    //A ver
+    @ManyToOne
+    @JoinColumn(name = "material_id", nullable = false)
     private Material material;
 
     @Column(nullable = false)
-
     private double compensationPercentage;
-    @Column(nullable = false)
 
+    @Column(nullable = false)
     private double declaredTonnage;
 
     @Column(nullable = false)
