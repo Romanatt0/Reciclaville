@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Setter
 @Getter
 @Entity
@@ -14,19 +16,20 @@ public class Declaration {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
-    
+    @ManyToOne
+    @JoinColumn(name = "customer_id", nullable = false)
     private Customer Customer;
 
-    //A ver
-    private String declarationDate;
-    //A ver
-    private String periodStartDate;
-
-    //A ver
-    private String periodEndDate;
+    @Column(nullable = false)
+    private LocalDate declarationDate;
 
     @Column(nullable = false)
+    private LocalDate periodStartDate;
 
+    @Column(nullable = false)
+    private LocalDate periodEndDate;
+
+    @Column(nullable = false)
     private double totalMaterials;
 
     @Column(nullable = false)
