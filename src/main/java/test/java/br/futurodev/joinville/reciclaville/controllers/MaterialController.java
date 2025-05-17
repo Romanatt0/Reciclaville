@@ -11,7 +11,7 @@ import test.java.br.futurodev.joinville.reciclaville.services.MaterialService;
 import java.util.List;
 
 @RestController
-@RequestMapping("customers")
+@RequestMapping("materials")
 public class MaterialController {
 
     @Autowired

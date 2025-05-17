@@ -20,10 +20,9 @@ public class CustomerController {
     @ResponseStatus(HttpStatus.CREATED)
     public Customer post(@RequestBody CustomerRequestDto dto) {
         return service.create(dto);
-
     }
 
-    @GetMapping("{id}")
+    @GetMapping
     public List<?> findAll(String search){
         return service.findAll( search);
     }

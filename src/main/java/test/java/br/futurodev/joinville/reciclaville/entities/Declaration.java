@@ -34,4 +34,8 @@ public class Declaration {
 
     @Column(nullable = false)
     private double totalCompensation;
+
+    public Declaration(){
+        this.declarationDate = LocalDate.now();
+    }
 }
