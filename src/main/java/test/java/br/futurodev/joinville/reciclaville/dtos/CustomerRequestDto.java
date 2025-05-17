@@ -2,7 +2,7 @@ package test.java.br.futurodev.joinville.reciclaville.dtos;
 
 
 
-public record CustomerResponseDto(
+public record CustomerRequestDto(
 
         String name,
         String cnpj,

@@ -18,6 +18,6 @@ public class Material {
     private String name;
 
     @Column(nullable = false)
-    private boolean compensationPercentage;
+    private Double compensationPercentage;
 
 }

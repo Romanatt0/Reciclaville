@@ -3,37 +3,39 @@ package test.java.br.futurodev.joinville.reciclaville.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import test.java.br.futurodev.joinville.reciclaville.dtos.CustomerRequestDto;
+import test.java.br.futurodev.joinville.reciclaville.dtos.MaterialRequestDto;
 import test.java.br.futurodev.joinville.reciclaville.entities.Customer;
-import test.java.br.futurodev.joinville.reciclaville.services.CustomerService;
+import test.java.br.futurodev.joinville.reciclaville.entities.Material;
+import test.java.br.futurodev.joinville.reciclaville.services.MaterialService;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("customers")
-public class CustomerController {
+public class MaterialController {
 
     @Autowired
-    CustomerService service;
+    MaterialService service;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Customer post(@RequestBody CustomerRequestDto dto) {
+    public Material post(@RequestBody MaterialRequestDto dto) {
         return service.create(dto);
+    }
 
+    @GetMapping
+    public List<?> findAll(){
+        return service.findAll();
     }
 
     @GetMapping("{id}")
-    public List<?> findAll(String search){
-        return service.findAll( search);
-    }
-    @GetMapping("{id}")
-    public Customer get(@PathVariable Long id){
-        return service.findById(id);
+    public List<Material> get(@PathVariable String name){
+        return service.findByNameIgnoreCase(name);
     }
 
     @PutMapping("{id}")
-    public Customer put(@PathVariable Long id,@RequestBody CustomerRequestDto dto ){
+    public Material put(@PathVariable Long id,@RequestBody MaterialRequestDto dto ){
+
         return service.update(id, dto);
     }
 

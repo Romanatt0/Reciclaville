@@ -1,13 +1,12 @@
 package test.java.br.futurodev.joinville.reciclaville.Mappers;
 
-import lombok.Getter;
-import lombok.Setter;
-import test.java.br.futurodev.joinville.reciclaville.dtos.CustomerResponseDto;
+
+import test.java.br.futurodev.joinville.reciclaville.dtos.CustomerRequestDto;
 import test.java.br.futurodev.joinville.reciclaville.entities.Customer;
 
 public class CustomerMapper {
 
-    public Customer toEntity(CustomerResponseDto dto){
+    public Customer toEntity(CustomerRequestDto dto){
 
         Customer customer = new Customer();
 
@@ -22,7 +21,7 @@ public class CustomerMapper {
         return customer;
     }
 
-    public Customer toDto (CustomerResponseDto dto, Customer customer ){
+    public Customer toDto (CustomerRequestDto dto, Customer customer ){
 
         customer.setName(dto.name());
         customer.setCnpj(dto.cnpj());

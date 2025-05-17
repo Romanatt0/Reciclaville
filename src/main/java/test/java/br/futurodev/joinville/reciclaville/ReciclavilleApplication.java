@@ -10,4 +10,6 @@ public class ReciclavilleApplication {
 		SpringApplication.run(ReciclavilleApplication.class, args);
 	}
 
+
+
 }
