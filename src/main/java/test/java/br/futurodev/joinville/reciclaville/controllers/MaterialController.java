@@ -20,17 +20,13 @@ public class MaterialController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Material post(@RequestBody MaterialRequestDto dto) {
+
         return service.create(dto);
     }
 
     @GetMapping
     public List<?> findAll(){
         return service.findAll();
-    }
-
-    @GetMapping("{id}")
-    public List<Material> get(@PathVariable String name){
-        return service.findByNameIgnoreCase(name);
     }
 
     @PutMapping("{id}")
@@ -44,5 +40,8 @@ public class MaterialController {
         service.deleteById(id);
     }
 
-
+    @GetMapping("{id}")
+    public Material get(@PathVariable Long id){
+        return service.findById(id);
+    }
 }

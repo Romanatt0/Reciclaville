@@ -1,14 +1,17 @@
 package test.java.br.futurodev.joinville.reciclaville.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.Optional;
 
 @Setter
 @Getter
 @Entity
 @Table(name = "declarationItems")
-public class DeclarationItems {
+public class DeclarationItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +19,7 @@ public class DeclarationItems {
 
     @ManyToOne
     @JoinColumn(name = "declaration_id", nullable = false)
+    @JsonIgnore
     private Declaration declaration;
 
     @ManyToOne
@@ -30,6 +34,20 @@ public class DeclarationItems {
 
     @Column(nullable = false)
     private double compensatedTonnage;
+
+    public DeclarationItem (Material material, double declaredTonnage){
+
+        this.material = material;
+
+        this.declaredTonnage = declaredTonnage;
+
+        this.compensationPercentage = material.getCompensationPercentage();
+
+        this.compensatedTonnage = declaredTonnage * this.compensationPercentage / 100;
+
+    }
+
+
 
 
 }

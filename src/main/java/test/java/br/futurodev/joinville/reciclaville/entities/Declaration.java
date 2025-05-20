@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Setter
 @Getter
@@ -35,7 +36,26 @@ public class Declaration {
     @Column(nullable = false)
     private double totalCompensation;
 
-    public Declaration(){
+    @OneToMany(mappedBy = "declaration", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<DeclarationItem> items;
+
+    public Declaration() {
+        this.declarationDate = LocalDate.now();    }
+
+    public Declaration(List<DeclarationItem> items) {
+
+        this.items = items;
+        this.totalMaterials = 0.0;
+        this.totalCompensation = 0.0;
+
+        if (items != null) {
+            for (DeclarationItem item : items) {
+                this.totalMaterials += item.getDeclaredTonnage();
+                this.totalCompensation += item.getCompensatedTonnage();
+            }
+        }
+
         this.declarationDate = LocalDate.now();
     }
+
 }
